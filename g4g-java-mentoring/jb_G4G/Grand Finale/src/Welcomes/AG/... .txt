@@ -1,0 +1,69 @@
+public interface interfejsAG {
+    public String getWelcome();
+    public static Welcome createWelcome;
+}
+
+---------------------------------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public abstract class AbstractAG implements interfejsAG {
+        public abstract String getWelcome();
+
+        public void createWelcome(){
+
+
+        if (customerWantsIce()) {
+        addIce();
+    }
+}
+
+    public void addIce() {
+        System.out.println("Adding ice");
+    }
+
+    //hook
+    public boolean customerWantsIce() {
+        String answer = getUserInput();
+
+        if (answer.toLowerCase().startsWith("y")) {
+            return true;
+        } else
+            return false;
+    }
+
+    private String getUserInput() {
+        String answer = null;
+        System.out.println("Would you like ice? (y/n)");
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            answer = input.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (answer == null) {
+            answer = "no";
+        }
+
+        return answer;
+    }
+}
+
+        
+ ---------------------------------------------------------------------------------------------
+
+public class Afrikaans extends AbstractAG {
+
+    @Override
+    public String getWelcome() {
+        return "Goeie môre! My naam is Asië. Kyk!";
+    }
+}
+
+---------------------------------------------------------------------------------------------
+

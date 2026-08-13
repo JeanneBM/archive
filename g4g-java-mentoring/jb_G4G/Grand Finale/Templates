@@ -1,0 +1,12 @@
+
+public class [nazwaklasy] extends AbstractAG {
+    public [nazwaklasy]() {
+    }
+
+    public String getWelcome() {
+        return "*";
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,158 @@
+
+public interface interfejsCommand {
+    public void choiceUp();
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
+public class choiceTaker {
+    interfejsCommand command;
+
+    public choiceTaker() {
+    }
+
+    public void takeChoice(interfejsCommand c) {
+        this.command = c;
+        this.command.choiceUp();
+    }
+}
+         
+----------------------------------------------------------------------------------------------------------------------
+
+public class welcomeOrder implements interfejsCommand{
+    welcomeMaker WelcomeMaker;
+    String order;
+    public welcomeOrder(welcomeMaker WelcomeMaker, String order){
+        this.WelcomeMaker = WelcomeMaker;
+        this.order= order;
+    }
+
+    @Override
+    public void choiceUp() {
+        WelcomeMaker.welcomeType = order;
+        WelcomeMaker.getOrder("Welcome");
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
+public class welcomeFactory{
+
+    public Welcome makeWelcome(String welcomeType) {
+        if (welcomeType.equals(null)){
+            return null;
+        }
+        else if(welcomeType.equals("Afrikaans")){
+            return new Afrikaans();
+        }
+        else if(welcomeType.equals("Arabski")){
+            return new Arabski();
+        }
+        else if(welcomeType.equals("Bengalski")){
+            return new Bengalski();
+        }
+
+        return null;
+        
+----------------------------------------------------------------------------------------------------------------------
+
+public class welcomeMaker {
+    public static String WelcomeType="";
+
+
+    interfejsAG InterfejsAG;
+    public void getOrder(String factoryType){
+           if(factoryType.equalsIgnoreCase("(1) A-G")){
+
+            System.out.println(WelcomeType + " order received.");
+            welcomeFactory factory = new welcomeFactory();
+            InterfejsAG = factory.makeWelcome(WelcomeType);
+            InterfejsAG.createWelcome();
+            System.out.println(InterfejsAG.getWelcome() + " order completed.");
+        }
+
+
+	    if(factoryType.equalsIgnoreCase("(2) H-N")){
+
+            System.out.println(WelcomeType + " order received.");
+            welcomeFactory factory = new welcomeFactory();
+            InterfejsAG = factory.makeWelcome(WelcomeType);
+            InterfejsAG.createWelcome();
+            System.out.println(InterfejsAG.getWelcome() + " order completed.");
+        }
+
+        System.out.println("");
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
+public class choiceMaker {
+    static String welcomeType="";
+    public static void main(String[] args) {
+        ChoiceTaker choiceTaker = new ChoiceTaker();
+
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.println("In what range is the first letter of the language you are looking for?");
+            System.out.println("(1) A-G");
+            System.out.println("(2) H-N");
+            System.out.println("(Other) Libertà");
+
+            int a = scanner.nextInt();
+            if(a==1) {
+            	Scanner scanAG = new Scanner(System.in);
+                System.out.println("-------------------- (1) A-G --------------------");
+                for (int i = 0; i < 1; i++) {
+                    System.out.println("-------------------- Languages --------------------");
+                    System.out.println("(1) ");
+                    System.out.println("(2) ");
+                    System.out.println("(3) ");
+		    int welcome = scanAG.nextInt();
+		      if (welcome == 1) {
+                        welcomeType = "Afrikaans";
+                        System.out.println("(1) is chosen.");
+                    } else if (welcome == 2) {
+                        welcomeType = "Arabski";
+                        System.out.println("(2) is chosen.");
+                    } else if (welcome == 3) {
+                        welcomeType = "Bengalski";
+                        System.out.println("(3) is chosen.");
+			
+ 	    else if (a == 2) {
+                Scanner scanHN = new Scanner(System.in);
+                System.out.println("-------------------- (2) H-N --------------------");
+                for (int i = 0; i < 1; i++) {
+                    System.out.println("-------------------- Languages --------------------");
+                    System.out.println("(1) ");
+                    System.out.println("(2) ");
+                    System.out.println("(3) ");
+		    int welcome = scanHN.nextInt();
+		      if (welcome == 1) {
+                        welcomeType = "";
+                        System.out.println("(1) is chosen.");
+                    } else if (welcome == 2) {
+                        welcomeType = "";
+                        System.out.println("(2) is chosen.");
+                    } else if (welcome == 3) {
+                        welcomeType = "";
+                        System.out.println("(3) is chosen.");
+                    } else {
+                        break;
+                    }
+                }
+		
+		System.out.println("");
+                WelcomeOrder welcomeOrder = new welcomeOrder(WelcomeMaker, welcomeType);
+                choiceTaker.takeChoice(welcomeOrder);
+            } else {
+                System.out.println("-------------------------------------------------------------------------------");
+                System.out.println("Libertà");
+                break;
+            }
+        }
+    }
+}			
+----------------------------------------------------------------------------------------------------------------------
+
+HN part, check/tests
